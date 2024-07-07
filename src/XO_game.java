@@ -14,6 +14,7 @@ public class XO_game {
         int position1;
         int position2;
 
+        char currentPlayer = 'x';
 
         //welcome text
         System.out.println("Welcome to OX Game.");
@@ -32,18 +33,61 @@ public class XO_game {
         }
 
         while (true) {
-            System.out.print("input position 1 and 2 : ");
-            position1 = kb.nextInt();
-            position2 = kb.nextInt();
-            System.out.println("your position is (" + position1 + " , " + position2 + ")" );
-            for(i = 0 ; i < row ; i++) {
-                //index out of bound
-                if (position1 > board.length + 1 || position2 > board.length + 1|| position1 < 1 || position2 < 1) {
-                    System.out.println("your index is valid, please try again.");
-                    break;
+            //X turn
+            if(currentPlayer == 'x'){
+                System.out.println("-- It's X Turn --");
+                System.out.print("input position 1 and 2 : ");
+                position1 = kb.nextInt();
+                position2 = kb.nextInt();
+                System.out.println("your position is (" + position1 + " , " + position2 + ")" );
+                for(i = 0 ; i < row ; i++) {
+                    //index out of bound
+                    if (position1 > board.length || position2 > board.length || position1 < 1 || position2 < 1) {
+                        System.out.println("your index is valid, please try again.");
+                        break;
+                        //this position is already taken and taken by X or O
+                    }else if(board[position1-1][position2-1] != ('-') && board[position1-1][position2-1] != ('X')){
+                        System.out.println("position is already exit, please try again.");
+                        break;
+                    }else{
+                        board[position1-1][position2-1] = 'X';
+                        currentPlayer = 'o';
+                    }
+                }
+                for (row = 0; row < board.length; row++) {
+                    for (col = 0; col < board.length; col++) {
+                        System.out.print("| " + board[row][col] + " ");
+                    }
+                    System.out.println("|");
+                }
+                //O turn
+            }else if(currentPlayer == 'o'){
+                System.out.println("-- It's O Turn --");
+                System.out.print("input position 1 and 2 : ");
+                position1 = kb.nextInt();
+                position2 = kb.nextInt();
+                System.out.println("your position is (" + position1 + " , " + position2 + ")" );
+                for(i = 0 ; i < row ; i++) {
+                    //index out of bound
+                    if (position1 > board.length || position2 > board.length || position1 < 1 || position2 < 1) {
+                        System.out.println("your index is valid, please try again.");
+                        break;
+                        //this position is already taken and taken by X or O
+                    }else if(board[position1-1][position2-1] != ('-') && board[position1-1][position2-1] != ('X')){
+                        System.out.println("position is already exit, please try again.");
+                        break;
+                    }else{
+                        board[position1-1][position2-1] = 'O';
+                        currentPlayer = 'x';
+                    }
+                }
+                for (row = 0; row < board.length; row++) {
+                    for (col = 0; col < board.length; col++) {
+                        System.out.print("| " + board[row][col] + " ");
+                    }
+                    System.out.println("|");
                 }
             }
         }
-
     }
 }
