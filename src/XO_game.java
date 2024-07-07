@@ -2,16 +2,21 @@ import java.util.Scanner;
 public class XO_game {
     public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
-
         char[][] board = new char[3][3];
-        System.out.println("Welcome to OX Game.");
 
+        //variable
         int row = 0;
         int col = 0;
 
-        int[][] O = new int[3][3];
-        int[][] X = new int[3][3];
+        int i;
+        int j;
 
+        int position1;
+        int position2;
+
+
+        //welcome text
+        System.out.println("Welcome to OX Game.");
         //set up blank board
         for (row = 0; row < board.length; row++) {
             for (col = 0; col < board.length; col++) {
@@ -26,20 +31,15 @@ public class XO_game {
             System.out.println("|");
         }
 
-        int i;
-        int j;
-
-        int inputPos1;
-        int inputPos2;
-
         while (true) {
             System.out.print("input position 1 and 2 : ");
-            inputPos1 = kb.nextInt();
-            inputPos2 = kb.nextInt();
-            System.out.println("your position is (" + inputPos1 + " , " + inputPos2 + ")" );
+            position1 = kb.nextInt();
+            position2 = kb.nextInt();
+            System.out.println("your position is (" + position1 + " , " + position2 + ")" );
             for(i = 0 ; i < row ; i++) {
-                if (inputPos1 > board.length + 1 || inputPos2 > board.length + 1) {
-                    System.out.println("index out of bound");
+                //index out of bound
+                if (position1 > board.length + 1 || position2 > board.length + 1|| position1 < 1 || position2 < 1) {
+                    System.out.println("your index is valid, please try again.");
                     break;
                 }
             }
