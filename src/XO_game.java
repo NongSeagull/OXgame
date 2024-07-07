@@ -44,39 +44,39 @@ public class XO_game {
                 System.out.print("input row and column : ");
                 position1 = kb.nextInt();
                 position2 = kb.nextInt();
-                System.out.println("your position is (" + position1 + " , " + position2 + ")" );
-                //index out of bound
-                if (position1 > board.length || position2 > board.length || position1 < 1 || position2 < 1) {
-                    System.out.println("Your input is out of bounds, please try again.");
-                    break;
+
+                    //index out of bound
+                    if (position1 > board.length || position2 > board.length || position1 < 1 || position2 < 1) {
+                        System.out.println("Your input is out of bounds, please try again.");
+                        break;
                     //position is already exit
-                }else if(board[position1-1][position2-1] != ('-') ){
-                    System.out.println("this position is already exist, please try again.");
-                    continue;
+                    }else if(board[position1-1][position2-1] != ('-') ){
+                        System.out.println("this position is already exist, please try again.");
+                        continue;
                     //write new info and switch player
-                }else{
-                    board[position1-1][position2-1] = 'X';
-                    currentPlayer = 'o';
-                }
+                    }else{
+                        board[position1-1][position2-1] = 'X';
+                        currentPlayer = 'o';
+                    }
             }else{ /* O turn */
                 System.out.println("-- It's O Turn --");
                 System.out.print("input row and column : ");
                 position1 = kb.nextInt();
                 position2 = kb.nextInt();
-                System.out.println("your position is (" + position1 + " , " + position2 + ")" );
-                //index out of bound
-                if (position1 > board.length || position2 > board.length || position1 < 1 || position2 < 1) {
-                    System.out.println("Your input is out of bounds, please try again.");
-                    break;
+
+                    //index out of bound
+                    if (position1 > board.length || position2 > board.length || position1 < 1 || position2 < 1) {
+                        System.out.println("Your input is out of bounds, please try again.");
+                        break;
                     //position is already exit
-                }else if(board[position1-1][position2-1] != ('-')){
-                    System.out.println("this position is already exist, please try again.");
-                    continue;
+                    }else if(board[position1-1][position2-1] != ('-')){
+                        System.out.println("this position is already exist, please try again.");
+                        continue;
                     //write new info and switch player
-                }else{
-                    board[position1-1][position2-1] = 'O';
-                    currentPlayer = 'x';
-                }
+                    }else{
+                        board[position1-1][position2-1] = 'O';
+                        currentPlayer = 'x';
+                    }
             }
         }
     }
