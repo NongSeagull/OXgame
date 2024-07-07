@@ -26,9 +26,23 @@ public class XO_game {
             System.out.println("|");
         }
 
+        int i;
+        int j;
+
+        int inputPos1;
+        int inputPos2;
 
         while (true) {
-            break;
+            System.out.print("input position 1 and 2 : ");
+            inputPos1 = kb.nextInt();
+            inputPos2 = kb.nextInt();
+            System.out.println("your position is (" + inputPos1 + " , " + inputPos2 + ")" );
+            for(i = 0 ; i < row ; i++) {
+                if (inputPos1 > board.length + 1 || inputPos2 > board.length + 1) {
+                    System.out.println("index out of bound");
+                    break;
+                }
+            }
         }
 
     }
