@@ -22,6 +22,13 @@ public class XO_game {
         }
     }
 
+    public static void checkPlayerTurn(char player) {
+        if (player == 'X') {
+            System.out.println("-- It's X Turn --");
+        } else {
+            System.out.println("-- It's O Turn --");
+        }
+    }
     public static char currentPlayer(boolean checkPlayer) {
         if (checkPlayer == true) {
             return 'X';
@@ -94,11 +101,7 @@ public class XO_game {
                 break;
             }
             //check player turn
-            if (player == 'X') {
-                System.out.println("-- It's X Turn --");
-            } else {
-                System.out.println("-- It's O Turn --");
-            }
+            checkPlayerTurn(player);
 
             System.out.print("input row and column : ");
             position1 = kb.nextInt();
