@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class XO_game {
     //class method
-    public static void printBoard(char[][] board){
+    public static void printBoard(char[][] board) {
         int row;
         int col;
         for (row = 0; row < board.length; row++) {
@@ -11,7 +11,9 @@ public class XO_game {
             System.out.println("|");
         }
     }
-    public static void setupBoard(char[][] board) {
+
+    public static void setUpBoard(char[][] board) {
+        System.out.println("Welcome to OX Game.");
         int row, col;
         for (row = 0; row < board.length; row++) {
             for (col = 0; col < board.length; col++) {
@@ -19,19 +21,35 @@ public class XO_game {
             }
         }
     }
+
+    public static char currentPlayer(boolean checkPlayer) {
+        if (checkPlayer == true) {
+            return 'X';
+        } else {
+            return 'O';
+        }
+    }
+    public static boolean switchPlayer(char player){
+        if(player == 'X'){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
     public static void printWinner(char winner) {
-        winner = ' ';
-        if(winner == 'x'){
+        if (winner == 'X') {
             System.out.print("--- X win ---");
-        }else if(winner == 'o'){
+        } else if (winner == 'O') {
             System.out.print("--- O win ---");
         }
     }
+
     public static String checkBoardFull(char[][] board) {
         int row, col;
         for (row = 0; row < board.length; row++) {
             for (col = 0; col < board.length; col++) {
-                if(board[row][col] == '-'){
+                if (board[row][col] == '-') {
                     return "not full";
                 }
             }
@@ -52,61 +70,52 @@ public class XO_game {
         /*position 1 and 2*/
         int position1;
         int position2;
-        /*for switch player*/
-        char currentPlayer = 'x';
+        /*player variable*/
+        char player;
+        /*switch player*/
+        boolean switchPlayer = true; //true: X , false: O
 
-        //welcome text
-        System.out.println("Welcome to OX Game.");
-
-        //set up blank board
-        setupBoard(board);
+        //show welcome text and set up blank board
+        setUpBoard(board);
 
         while (true) {
+            /*config player by method currentPlayer(boolean)
+            if boolean is true : player = X
+            if boolean is false : player = O */
+            //in this loop boolean is true then currentPlayer is X
+            player = currentPlayer(switchPlayer);
+
             //print board
             printBoard(board);
+
             //check board is full or not (if true this game will end)
-            if(checkBoardFull(board).equals("full")) {
+            if (checkBoardFull(board).equals("full")) {
                 System.out.println("-- It's a Draw --");
                 break;
             }
-            if(currentPlayer == 'x'){ /* X turn */
+            //check player turn
+            if (player == 'X') {
                 System.out.println("-- It's X Turn --");
-                System.out.print("input row and column : ");
-                position1 = kb.nextInt();
-                position2 = kb.nextInt();
-
-                    //index out of bound
-                    if (position1 > board.length || position2 > board.length || position1 < 1 || position2 < 1) {
-                        System.out.println("Your input is out of bounds, please try again.");
-                        continue;
-                    //position is already exit
-                    }else if(board[position1-1][position2-1] != ('-') ){
-                        System.out.println("this position is already exist, please try again.");
-                        continue;
-
-                    }else{ //write new info and switch player
-                        board[position1-1][position2-1] = 'X';
-                        currentPlayer = 'o';
-                    }
-
-            }else{ /* O turn */
+            } else {
                 System.out.println("-- It's O Turn --");
-                System.out.print("input row and column : ");
-                position1 = kb.nextInt();
-                position2 = kb.nextInt();
+            }
 
-                    //index out of bound
-                    if (position1 > board.length || position2 > board.length || position1 < 1 || position2 < 1) {
-                        System.out.println("Your input is out of bounds, please try again.");
-                        continue;
-                    //position is already exit
-                    }else if(board[position1-1][position2-1] != ('-')){
-                        System.out.println("this position is already exist, please try again.");
-                        continue;
-                    }else{ //write new info and switch player
-                        board[position1-1][position2-1] = 'O';
-                        currentPlayer = 'x';
-                    }
+            System.out.print("input row and column : ");
+            position1 = kb.nextInt();
+            position2 = kb.nextInt();
+
+            //index out of bound
+            if (position1 > board.length || position2 > board.length || position1 < 1 || position2 < 1) {
+                System.out.println("Your input is out of bounds, please try again.");
+                continue;
+                //position is already exit
+            } else if (board[position1 - 1][position2 - 1] != ('-')) {
+                System.out.println("this position is already exist, please try again.");
+                continue;
+            } else { //write new info and switch player
+                board[position1 - 1][position2 - 1] = player;
+                //switch player
+                switchPlayer = switchPlayer(player);
             }
         }
     }
